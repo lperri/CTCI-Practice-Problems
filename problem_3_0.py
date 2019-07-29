@@ -1,5 +1,5 @@
 # implement stack
-# first in -- first out
+# last in -- first out
 # needs methods: 
 #               pop() -- remove 
 #               push() -- add item to the top
