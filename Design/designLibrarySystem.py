@@ -24,6 +24,7 @@ Functions of Item
 '''
 import random
 import string
+import datetime
 
 
 
@@ -40,7 +41,7 @@ class Library(object):
 		else:
 			self.members = members
 		if totalInventory is None:
-			self.totalInventory = {} # {bookID:[numberOwned, numberAvaiable]}
+			self.totalInventory = {} #{bookID:[num_owned, [copy1, copy2, copy3...]]}
 		else:
 			self.totalInventory = totalInventory
 		if checkedOut is None:
@@ -94,33 +95,72 @@ class Employee(object):
 		return ''.join(random.choice(lettersAndDigits) for i in range(stringLength))
 
 
-
 class Librarian(Employee):
 
 	def __init__(self, employeeName):
 		super(Librarian, self).__init__(employeeName, employeeID=None, service="Librarian",salary=Employee.std_salary)
 
-	def lendItem(self, book, totalInventory):
+	def _lendItem(self, book, totalInventory):
 		if book.bookID in totalInventory:
-			if totalInventory[book.bookID][1] > 0:
-				totalInventory[book.bookID][1] -= 1
+			if len(totalInventory[book.bookID][1]) > 0:
+				return totalInventory[book.bookID][1].pop()
 			else:
 				print 'Sorry, all copies are checked out at the moment.'
 		else:
 			print 'Sorry, we don\'t carry that book.'
 
+	def _dueDate(self, date_today):
+		pass
 
-
-class LibraryCard(object):
-	def __init__(self, borrowerName, number):
-		self.borrowerName = borrowerName
-		self.number = randomStringDigits()
-
+	def isAvailable(self, totalInventory):
+		if self.bookID in totalInventory:
+			if len(totalInventory[self.bookID][1]) > 0:
+				return True
+		return False
 
 
 class Borrower(object):
-	#def __init__(self, name, libCard, booksCheckedOut):
-	pass
+	def __init__(self, name, libraryCard=None, checkedOut=None):
+		self.name = name
+		if libraryCard is None:
+			self.libraryCard = LibraryCard(self.name)
+		else:
+			self.libraryCard = libraryCard
+		if checkedOut is None:
+			self.checkedOut = []
+		else:
+			self.checkedOut = checkedOut
+
+	def checkOut(self, librarian, totalInventory, title, author=None, bookID=None):
+		for bookID in totalInventory:
+			if totalInventory[bookID][1]
+		book_to_checkout = librarian._lendItem(book, totalInventory)
+		self.checkedOut.append(book_to_checkout)
+		print 'Thanks, {}. You\'ve successfully checked out {} by {}.'.format(self.name, book.title, book.author)
+
+	
+	def returnBook(self, librarian, totalInventory):
+
+
+
+
+	def showCheckedOut(self):
+		for book in self.checkedOut:
+			print '-------------'
+			print 'Title: {}, Author: {}, BookID: {}, '.format(book.title, book.author, book.bookID)
+		print '-------------'
+
+
+
+class LibraryCard(Borrower):
+	def __init__(self, name, cardNumber=None):
+		if cardNumber is None:
+			self.cardNumber = self.generateCardNumber()
+
+	def generateCardNumber(self, stringLength=15):
+		lettersAndDigits = string.ascii_letters + string.digits
+		return ''.join(random.choice(lettersAndDigits) for i in range(stringLength))
+
 
 # assumption for simplicity that library only contains literature -- no other media types
 class Book(object):
@@ -134,15 +174,10 @@ class Book(object):
 		if self.bookID is None:
 			self.bookID = self.generateBookID()
 
-	def isAvailable(self, totalInventory):
-		if book in totalInventory:
-			if totalInventory[book][1] > 0:
-				return True
-		return False
-
 	def generateBookID(self, stringLength=20):
 		lettersAndDigits = string.ascii_letters + string.digits
 		return ''.join(random.choice(lettersAndDigits) for i in range(stringLength))
+
 
 
 my_lib = Library('Glenview Public Library', '1544 Hawthorne Ln Glenview, IL 60025')
@@ -161,9 +196,11 @@ books = [Book('The Great Gatsby', 'F. Scott Fitzgerald'), Book('The Unbearable L
 for book in books:
 	my_lib.newBook(book)
 
-print my_lib.totalInventory
 
+borrower_1 = Borrower('Gauri Rangrass')
+print '{}\'s library card number is {}'.format(borrower_1.name, borrower_1.libraryCard.cardNumber)
 
+borrower_1.checkOut(librarian_1, my_lib.totalInventory, 'The Great Gatsby')
 
 
 
