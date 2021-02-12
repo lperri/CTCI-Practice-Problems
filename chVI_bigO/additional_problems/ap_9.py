@@ -9,8 +9,6 @@
 
 """
 
-# this whole exercise doesn't really apply to python bc mem allocation but....
-
 def copyArray(array):
     copy = []
     for value in array:
@@ -20,17 +18,15 @@ def copyArray(array):
 def appendToNew(array, value):
     """ copy all elements over to new array """
     bigger = [0]*(len(array)+1)
-    
-    for i in xrange(len(array)):
+
+    for i in range(len(array)):
         bigger[i] = array[i]
-   
+
     bigger[len(array)]=value
     return bigger
 
 
 print copyArray([1,2,3,4,5])
 
-""" calling copyArray varies depending on the size of copy, which changes each time appendToNew is called by one; --> O(1+2+3...+n) ~ O(n^2) """
-
-
-
+# Calling copyArray varies depending on the size of copy,
+# which changes each time appendToNew is called by one; --> O(1+2+3...+n) ~ O(n^2)

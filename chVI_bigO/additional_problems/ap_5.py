@@ -14,10 +14,4 @@ def sqrt_helper(n,int_min,int_max):
     else:
         return sqrt_helper(n,int_min,guess-1)
 
-""" the answer: my instic says O(log(n)) b/c we seem to be dividing the answer possibilities in half each time we call sqrt_helper
-
---> sqrt(4); returns sqrt_helper(4,1,4) -- O(1)
---> sqrt_helper(n,1,4) --> guess the integer middle between 1 and 4 (1+4/2) = 5/2 = 2.
---> if 2**2 is n, which it is, return guess
-
-final answer O(log(n)) """
+# Essentially binary search to get the answer => O(logn)

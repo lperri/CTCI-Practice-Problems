@@ -8,4 +8,6 @@ def sqrt(n):
         guess += 1
     return -1
 
-""" the answer: runtime of O(SQRT(n)) because guess is the square root of n (if you guess right) so you would never go above it, even if you guess wrong, it would never go above a little over sqrt(n) """
+# O(SQRT(n)) because cane rewrite the while condition as while guess < SQRT(n)
+# then guess gets incremented by 1 after each iteration.
+# Because we start at guess = 1, we have SQRT(n) iterations total.
