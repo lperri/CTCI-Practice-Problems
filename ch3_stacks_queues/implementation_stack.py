@@ -1,13 +1,13 @@
 # implement stack
 # last in -- first out
-# needs methods: 
-#               pop() -- remove 
+# needs methods:
+#               pop() -- remove
 #               push() -- add item to the top
 #               peek() -- return the top
 #               isEmpty -- returns true only if empty
 
 class Node:
-    
+
     def __init__(self,data=None):
         self.data = data
         self.next = None
@@ -36,7 +36,7 @@ class Stack:
             self.top = new_data
 
     def peek(self):
-        return self.top.data 
+        return self.top.data
 
     def isEmpty(self):
         if self.top is None:
@@ -44,10 +44,10 @@ class Stack:
         else:
             return False
 
-q = Stack()
-q.push('10')
-q.push(20)
-q.push(30)
+stack = Stack()
+stack.push('10')
+stack.push(20)
+stack.push(30)
 print 'the next value should be 30'
 print q.peek()
 print 'the next value should also be 30'
