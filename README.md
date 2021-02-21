@@ -1,9 +1,13 @@
 # CTCI-Practice-Problems
 
-"implementation.py" is my implementation of whatever data structure is being discussed in the chapter.
+Working through chapters of CTCI for coding interview preparation.
 
-AP_1 means "AdditionalProblem_Problem1"
+Notes:
 
-EX_1 means "Example_Problem1"
-
-IQ_1 means "InterviewQuestion_Problem1"
+ >`implementation.py` is my implementation of whatever data structure is being discussed in the chapter.
+ >
+ >`ap`: "additional problem"
+ >
+ >`ex`: "example problem"
+ >
+ >`iq`: "interview question"
