@@ -56,8 +56,8 @@ def _reverse(linked_list: LinkedList) -> LinkedList:
     # list gets reversed
     curr_node = linked_list.head.next
     linked_list.head.next = None
+    prev_node = None
 
-    prev_node, curr_node = None, curr_node
     while curr_node is not None:
         actual_next = curr_node.next
         curr_node.next = prev_node
