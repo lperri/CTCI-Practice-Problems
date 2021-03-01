@@ -1,5 +1,4 @@
 # implement a MyQueue class which implements a queue using two stacks
-from implementation_stack_queue import Stack
 from typing import Any, List
 
 class MyQueue:
