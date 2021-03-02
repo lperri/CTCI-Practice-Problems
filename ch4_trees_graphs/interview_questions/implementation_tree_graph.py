@@ -11,7 +11,6 @@ class BinaryTree:
         self.root = BinaryTreeNode(root_val)
 
     def pre_order_traversal(self):
-
         def traverse(node):
             if not node:
                 return
